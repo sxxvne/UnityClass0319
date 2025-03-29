@@ -4,11 +4,19 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
+
+
+
+
+
+
+
 {
     public Transform player;
     private float detectionRange = 20f;
-    public float attackRange = 2f;     
+    public float attackRange = 2f;
     public int damage = 10;
+    private float lastAttackTime = 0f;
 
     private NavMeshAgent agent;
 
@@ -27,25 +35,31 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (agent != null) return;
+        if (agent == null) return;
         float distancePlayer =
             Vector3.Distance(player.position, transform.position);
         if (distancePlayer < detectionRange)
         {
             agent.SetDestination(player.transform.position);
         }
+        if (distancePlayer <= attackRange && Time.time - lastAttackTime > 1f)
+        {
+            lastAttackTime = Time.time;
+            player.GetComponent<Hp>()?.Damage(damage);
+        }
 
 
 
         if (distancePlayer <= attackRange)
         {
-           Hp playerHp = player.GetComponent<Hp>();
-           if (playerHp != null) 
-           { playerHp.Damage(damage);
-           }
+            Hp playerHp = player.GetComponent<Hp>();
+            if (playerHp != null)
+            {
+                playerHp.Damage(damage);
+            }
         }
     }
 }
-   
+
 
 
