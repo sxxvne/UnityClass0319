@@ -7,6 +7,7 @@ public class At : MonoBehaviour
     public int damage = 5;
     private float attackRange = 10f;
     public LayerMask enemyLayer;
+    public LayerMask PlayerLayer;
     public Camera cam;
     private Ray ray;
     RaycastHit hit;
@@ -41,4 +42,5 @@ public class At : MonoBehaviour
             }
         }
     }
+
 }

@@ -17,6 +17,7 @@ public class Hp : MonoBehaviour
         if (currentHp <= 0)
         {
             gameObject.SetActive(false);
+            currentHp = 0;
         }
     }
 }

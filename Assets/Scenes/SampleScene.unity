@@ -244,7 +244,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1713733536}
   attackRange: 2
-  damage: 10
+  damage: 1
+  distancePlayer: 0
 --- !u!195 &332974488
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -963,6 +964,9 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8
+  PlayerLayer:
+    serializedVersion: 2
+    m_Bits: 0
   cam: {fileID: 963194227}
 --- !u!114 &1713733539
 MonoBehaviour:

@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     public float attackRange = 2f;
     public int damage = 10;
     private float lastAttackTime = 0f;
-
+    public float distancePlayer;
     private NavMeshAgent agent;
 
     private void Start()
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         if (agent == null) return;
-        float distancePlayer =
+        distancePlayer =
             Vector3.Distance(player.position, transform.position);
         if (distancePlayer < detectionRange)
         {
@@ -45,19 +45,14 @@ public class Enemy : MonoBehaviour
         if (distancePlayer <= attackRange && Time.time - lastAttackTime > 1f)
         {
             lastAttackTime = Time.time;
-            player.GetComponent<Hp>()?.Damage(damage);
+          
+            player.GetComponent<Hp>().Damage(damage);
         }
+       
 
 
 
-        if (distancePlayer <= attackRange)
-        {
-            Hp playerHp = player.GetComponent<Hp>();
-            if (playerHp != null)
-            {
-                playerHp.Damage(damage);
-            }
-        }
+        
     }
 }
 
